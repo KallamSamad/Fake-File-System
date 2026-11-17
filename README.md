@@ -27,7 +27,7 @@ Entities Involved here  (translate them into classes):
 * FileObject - An abstract class  
 
   * private: string name
-  * public: pure virtual display (using overloaded ostream operators), pure virtual getSize (size\_t because >=0);
+  * public: pure virtual display (using overloaded ostream operators when implementing), pure virtual getSize (size\_t because >=0);
 * IndividualFile - a polymorphic pointer array of the File object
 
   * Child of FileObject
