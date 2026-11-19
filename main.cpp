@@ -1,11 +1,17 @@
 // main.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-
+#include "FileObject.h"
 #include <iostream>
+#include <string>
+#include <chrono>
+#include "Directory.h"
+#include "IndividualFile.h"
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	IndividualFile a(100,"1");
+	cout<<a.getSize();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
