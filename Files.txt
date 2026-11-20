@@ -1,0 +1,8 @@
+Time Created       Time Modified       Name            Size
+20/11/2026 13:39 | 20/11/2026 13:39 | document.txt     | 100
+20/11/2026 13:39 | 20/11/2026 13:39 | image.png        | 500
+20/11/2026 13:39 | 20/11/2026 13:39 | video.mp4        | 900
+20/11/2026 13:39 | 20/11/2026 13:39 | Documents        | <DIR>
+20/11/2026 13:39 | 20/11/2026 13:39 | Downloads        | <DIR>
+3 File(s)  1500 total bytes
+2 Dir(s)

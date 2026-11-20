@@ -32,23 +32,29 @@ size_t Directory::getSize() const
 
     return totalSize;
 }
-void displayTime(TimePoint time)
+void displayTime(ostream& os, TimePoint time)
 {
     time_t converted = chrono::system_clock::to_time_t(time);
 
     tm timeInfo{};
     localtime_s(&timeInfo, &converted);
 
-    cout << put_time(&timeInfo, "%d/%m/%Y %H:%M");
+    os << put_time(&timeInfo, "%d/%m/%Y %H:%M");
 }
 
 void Directory::display() const
 {
-    cout << left
+    display(cout);
+}
+
+void Directory::display(ostream& os) const
+{
+    os << left
         << setw(19) << "Time Created"
         << setw(20) << "Time Modified"
         << setw(16) << "Name"
         << "Size\n";
+
     size_t fileCount = 0;
     size_t dirCount = 0;
     size_t totalBytes = 0;
@@ -59,24 +65,24 @@ void Directory::display() const
     {
         
 
-        displayTime(fileList[i]->getTimeCreated());
-        cout << " | ";
+        displayTime(os, fileList[i]->getTimeCreated());
+        os << " | ";
 
-        displayTime(fileList[i]->getTimeModified());
-        cout << " | ";
+        displayTime(os, fileList[i]->getTimeModified());
+        os << " | ";
 
-        cout << left
+        os << left
             << setw(16) << fileList[i]->getName()
             << " | ";
          
-        if (fileList[i]->isDirectory()) {
-            cout << "<DIR>";
+        if (os, fileList[i]->isDirectory()) {
+            os << "<DIR>";
         }
         else {
-            cout << fileList[i]->getSize();
+            os << fileList[i]->getSize();
         }
 
-        cout << '\n';
+        os << '\n';
         if (dynamic_cast<IndividualFile*>(fileList[i]))
         {
             fileCount++;
@@ -88,10 +94,10 @@ void Directory::display() const
         }
   
     }
-    cout << fileCount << " File(s)  "
+    os << fileCount << " File(s)  "
         << totalBytes << " total bytes\n";
 
-    cout << dirCount << " Dir(s)\n";
+    os << dirCount << " Dir(s)\n";
 }
 void Directory::add(FileObject* file) {
 

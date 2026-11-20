@@ -106,7 +106,7 @@ void Console::run()
 
 void Console::dir()
 {
-    currentDirectory->display();
+    currentDirectory->display(cout);
 }
 
 void Console::sortSize() {

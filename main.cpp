@@ -3,6 +3,7 @@
 #include "Directory.h"
 #include "IndividualFile.h"
 #include "Console.h"
+#include "Storage.h"
 
 int main()
 {
@@ -29,8 +30,10 @@ int main()
     root.add(documents);
     root.add(downloads);
 
+    Storage storage;
     Console console(root);
     console.run();
+    storage.save(root);
 
     return 0;
 }

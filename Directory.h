@@ -9,8 +9,9 @@ public:
     ~Directory();
     friend ostream& operator<<(ostream& os, const Directory& rhs);
     void display() const override;
+    void display(ostream& os) const;
     size_t getSize() const override;
-    bool isDirectory() const ;
+    bool isDirectory() const override;
     void add(FileObject* file);
     void resize();
 private:
