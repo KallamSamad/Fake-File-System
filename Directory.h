@@ -20,7 +20,12 @@ private:
 
 inline ostream& operator<<(ostream& os, const Directory& rhs)
 {
+    os << rhs.getName() << ": " << rhs.getSize() << " bytes\n";
 
-    os << rhs.getName() << ":" << rhs.getSize() << " bytes\n";
+    for (size_t i = 0; i < rhs.count; i++)
+    {
+        os << *rhs.fileList[i] << '\n';
+    }
+
     return os;
 }

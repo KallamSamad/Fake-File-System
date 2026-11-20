@@ -1,4 +1,10 @@
+#pragma once
 #include "Directory.h"
+#include "FileObject.h"
+#include "IndividualFile.h"
+ 
+ 
+
 
 Directory::Directory(const std::string& name, size_t capacity)
     : FileObject(name), capacity(capacity)
@@ -26,10 +32,28 @@ size_t Directory::getSize() const
 
     return totalSize;
 }
+void displayTime(TimePoint time)
+{
+    time_t converted = chrono::system_clock::to_time_t(time);
+
+    tm timeInfo{};
+    localtime_s(&timeInfo, &converted);
+
+    cout << put_time(&timeInfo, "%d/%m/%Y %H:%M");
+}
 
 void Directory::display() const
 {
-    cout << *this;
+    for (size_t i = 0; i < count; i++)
+    {
+        displayTime(fileList[i]->getTimeCreated());
+        cout << " ";
+
+        displayTime(fileList[i]->getTimeModified());
+        cout << " ";
+
+        cout << fileList[i]->getName() << "\n";
+    }
 }
 
 void Directory::add(FileObject* file) {

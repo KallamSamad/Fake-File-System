@@ -7,3 +7,10 @@ FileObject::FileObject(const string& name) : name(name), timeCreated(chrono::sys
 timeModified(timeCreated) {
 
 }
+ 
+
+ostream& operator<<(ostream& os, const FileObject& rhs)
+{
+    rhs.display();
+    return os;
+}
