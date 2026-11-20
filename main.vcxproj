@@ -123,12 +123,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Console.cpp" />
     <ClCompile Include="Directory.cpp" />
     <ClCompile Include="FileObject.cpp" />
     <ClCompile Include="IndividualFile.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Console.h" />
     <ClInclude Include="Directory.h" />
     <ClInclude Include="FileObject.h" />
     <ClInclude Include="IndividualFile.h" />

@@ -2,6 +2,7 @@
 #include "FileObject.h"
 #include "Directory.h"
 #include "IndividualFile.h"
+#include "Console.h"
 
 int main()
 {
@@ -26,15 +27,8 @@ int main()
 
     documents->add(coursework);
 
-    root.add(documents);
-    root.add(downloads);
-
-    cout << root;
-    cout << *documents;
-    cout << *downloads;
-    cout << *coursework;
-
-
+    Console console(root);
+    console.run();
 
     return 0;
 }
