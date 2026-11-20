@@ -1,5 +1,8 @@
+#include <algorithm>
 #include "Console.h"
+#include <cctype>
 
+using namespace std;
 
  
 
@@ -7,28 +10,63 @@ Console::Console(Directory& root)
     : root(root), currentDirectory(&root)
 {
 }
+Console::Command Console::parseCommand(const string& input) const
+{
+    if (input == "dir") return Command::DIR;
+    if (input == "sortsize") return Command::SORTSIZE;
+    if (input == "sortname") return Command::SORTNAME;
+    if (input == "cd") return Command::CD;
+    if (input == "mkdir") return Command::MKDIR;
+    if (input == "mkfile") return Command::MKFILE;
+    if (input == "del") return Command::DEL;
+    if (input == "exit") return Command::EXIT;
+
+    return Command::INVALID;
+}
+
+string Console::toLower(string input)
+{
+    for (char& c : input)
+        c = static_cast<char>(tolower(static_cast<unsigned char>(c)));
+
+    return input;
+}
 
 void Console::run()
 {
-    string command;
+    string input;
 
     do {
-
-        cout << "Initialisation Complete" << "\n";
+        cout << "Initialisation Complete\n";
         cout << "> ";
-        cin >> command;
 
-        if (command == "dir") {
+        cin >> input;
+        input=Console::toLower(input);
+
+        Command command = parseCommand(input);
+
+        switch (command) {
+        case Command::DIR:
             dir();
-        }
-        else if (command == "sortsize") {
+            break;
+
+        case Command::SORTSIZE:
             sortSize();
-        }
-        else if (command == "sortname") {
+            break;
+
+        case Command::SORTNAME:
             sortName();
+            break;
+
+        case Command::EXIT:
+            return;
+
+        default:
+            cout << "Invalid command\n";
+            break;
         }
 
-    } while (command != "7");
+    } while (true);
 }
 
 
