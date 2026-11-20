@@ -11,5 +11,5 @@ IndividualFile::IndividualFile(size_t bytes, const string& name)
 
 void IndividualFile::display() const
 {
-    std::cout << "File size: " << bytes << " bytes\n";
+    cout << *this;
 }

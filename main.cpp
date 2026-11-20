@@ -1,26 +1,40 @@
-// main.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-#include "FileObject.h"
 #include <iostream>
-#include <string>
-#include <chrono>
+#include "FileObject.h"
 #include "Directory.h"
 #include "IndividualFile.h"
 
-
 int main()
 {
-	IndividualFile a(100,"1");
-	cout<<a.getSize();
+    Directory root("Root");
+
+    root.add(new IndividualFile(100, "document.txt"));
+    root.add(new IndividualFile(500, "image.png"));
+    root.add(new IndividualFile(900, "video.mp4"));
+
+    Directory* documents = new Directory("Documents");
+    Directory* downloads = new Directory("Downloads");
+    Directory* coursework = new Directory("Coursework");
+
+    documents->add(new IndividualFile(200, "essay.docx"));
+    documents->add(new IndividualFile(300, "notes.txt"));
+
+    downloads->add(new IndividualFile(400, "installer.exe"));
+    downloads->add(new IndividualFile(600, "archive.zip"));
+
+    coursework->add(new IndividualFile(1000, "project.cpp"));
+    coursework->add(new IndividualFile(2000, "assignment.pdf"));
+
+    documents->add(coursework);
+
+    root.add(documents);
+    root.add(downloads);
+
+    cout << root;
+    cout << *documents;
+    cout << *downloads;
+    cout << *coursework;
+
+
+
+    return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

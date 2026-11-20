@@ -6,10 +6,18 @@ class IndividualFile :
 {
 public:
     IndividualFile(size_t bytes, const std::string& name);
-    void display() const override;
+    friend ostream& operator<<(ostream& os, const IndividualFile& rhs);
     size_t getSize() const override { return bytes; }
+    void display() const override;
+
 private:
     size_t bytes;
  
 };
 
+inline ostream& operator<<(ostream& os, const IndividualFile& rhs)
+{
+
+    os << rhs.getName() << ":" << rhs.getSize() << " bytes\n";
+    return os;
+}
