@@ -49,9 +49,16 @@ void Directory::display() const
         << setw(20) << "Time Modified"
         << setw(16) << "Name"
         << "Size\n";
+    size_t fileCount = 0;
+    size_t dirCount = 0;
+    size_t totalBytes = 0;
+
+
 
     for (size_t i = 0; i < count; i++)
     {
+        
+
         displayTime(fileList[i]->getTimeCreated());
         cout << " | ";
 
@@ -61,7 +68,7 @@ void Directory::display() const
         cout << left
             << setw(16) << fileList[i]->getName()
             << " | ";
-
+         
         if (fileList[i]->isDirectory()) {
             cout << "<DIR>";
         }
@@ -70,7 +77,21 @@ void Directory::display() const
         }
 
         cout << '\n';
+        if (dynamic_cast<IndividualFile*>(fileList[i]))
+        {
+            fileCount++;
+            totalBytes += fileList[i]->getSize();
+        }
+        else if (dynamic_cast<Directory*>(fileList[i]))
+        {
+            dirCount++;
+        }
+  
     }
+    cout << fileCount << " File(s)  "
+        << totalBytes << " total bytes\n";
+
+    cout << dirCount << " Dir(s)\n";
 }
 void Directory::add(FileObject* file) {
 

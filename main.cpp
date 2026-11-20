@@ -26,6 +26,8 @@ int main()
     coursework->add(new IndividualFile(2000, "assignment.pdf"));
 
     documents->add(coursework);
+    root.add(documents);
+    root.add(downloads);
 
     Console console(root);
     console.run();

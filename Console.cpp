@@ -32,16 +32,18 @@ string Console::toLower(string input)
     return input;
 }
 
+ 
 void Console::run()
 {
     string input;
 
+ 
     do {
-        cout << "Initialisation Complete\n";
-        cout << "> ";
+        cout << "Initialisation Complete.....\n";
+        cout << "\\ : > ";
 
         cin >> input;
-        input=Console::toLower(input);
+        input = Console::toLower(input);
 
         Command command = parseCommand(input);
 
@@ -58,6 +60,38 @@ void Console::run()
             sortName();
             break;
 
+        case Command::CD:
+        {
+            string name;
+            cin >> name;
+            cd(name);
+            break;
+        }
+
+        case Command::MKDIR:
+        {
+            string name;
+            cin >> name;
+            mkdir(name);
+            break;
+        }
+
+        case Command::MKFILE:
+        {
+            string name;
+            cin >> name;
+            mkfile(name);
+            break;
+        }
+
+        case Command::DEL:
+        {
+            string name;
+            cin >> name;
+            del(name);
+            break;
+        }
+
         case Command::EXIT:
             return;
 
@@ -70,9 +104,11 @@ void Console::run()
 }
 
 
-void Console::dir() {
-
+void Console::dir()
+{
+    currentDirectory->display();
 }
+
 void Console::sortSize() {
 
 }
