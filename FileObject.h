@@ -17,6 +17,7 @@ public:
 	friend ostream& operator<<(ostream& os, const FileObject& rhs);
 	void virtual display() const = 0;
 	size_t virtual getSize() const = 0;
+	virtual bool isDirectory() const = 0;
 	TimePoint getTimeCreated() const { return timeCreated; }
 	TimePoint getTimeModified() const { return timeModified; } 
 

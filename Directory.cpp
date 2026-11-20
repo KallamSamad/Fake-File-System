@@ -51,8 +51,7 @@ void Directory::display() const
         << "Size\n";
 
     for (size_t i = 0; i < count; i++)
-    { 
-
+    {
         displayTime(fileList[i]->getTimeCreated());
         cout << " | ";
 
@@ -60,15 +59,19 @@ void Directory::display() const
         cout << " | ";
 
         cout << left
-            << setw(15) << fileList[i]->getName()
-            << " | "
-            << fileList[i]->getSize() << " Bytes"
-            << "\n";
+            << setw(16) << fileList[i]->getName()
+            << " | ";
+
+        if (fileList[i]->isDirectory()) {
+            cout << "<DIR>";
+        }
+        else {
+            cout << fileList[i]->getSize();
+        }
+
+        cout << '\n';
     }
-
-    
 }
-
 void Directory::add(FileObject* file) {
 
     if (count == capacity) {
@@ -93,4 +96,8 @@ void Directory::resize() {
     fileList = newArray;
 
 
+}
+
+bool Directory::isDirectory() const {
+    return true;
 }

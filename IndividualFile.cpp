@@ -19,3 +19,8 @@ void IndividualFile::display() const
     TimePoint created = getTimeCreated();
     TimePoint modified = getTimeModified();
 }
+
+
+bool IndividualFile::isDirectory() const {
+    return false;
+}

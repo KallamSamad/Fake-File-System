@@ -10,6 +10,7 @@ public:
     friend ostream& operator<<(ostream& os, const Directory& rhs);
     void display() const override;
     size_t getSize() const override;
+    bool isDirectory() const ;
     void add(FileObject* file);
     void resize();
 private:

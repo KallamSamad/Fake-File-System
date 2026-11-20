@@ -9,6 +9,8 @@ public:
     friend ostream& operator<<(ostream& os, const IndividualFile& rhs);
     size_t getSize() const override { return bytes; }
     void display() const override;
+    bool isDirectory() const;
+
 
 private:
     size_t bytes;
