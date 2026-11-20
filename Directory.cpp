@@ -44,16 +44,29 @@ void displayTime(TimePoint time)
 
 void Directory::display() const
 {
+    cout << left
+        << setw(19) << "Time Created"
+        << setw(20) << "Time Modified"
+        << setw(16) << "Name"
+        << "Size\n";
+
     for (size_t i = 0; i < count; i++)
-    {
+    { 
+
         displayTime(fileList[i]->getTimeCreated());
-        cout << " ";
+        cout << " | ";
 
         displayTime(fileList[i]->getTimeModified());
-        cout << " ";
+        cout << " | ";
 
-        cout << fileList[i]->getName() << "\n";
+        cout << left
+            << setw(15) << fileList[i]->getName()
+            << " | "
+            << fileList[i]->getSize() << " Bytes"
+            << "\n";
     }
+
+    
 }
 
 void Directory::add(FileObject* file) {
