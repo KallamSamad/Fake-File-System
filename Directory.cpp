@@ -12,6 +12,11 @@ Directory::Directory(const std::string& name, size_t capacity)
     fileList = new FileObject * [capacity]();
 }
 
+Directory::Directory(const string& name, TimePoint created, TimePoint modified)
+    : FileObject(name, created, modified), capacity(2)
+{
+    fileList = new FileObject * [capacity];
+}
 Directory::~Directory()
 {
 
@@ -32,15 +37,18 @@ size_t Directory::getSize() const
 
     return totalSize;
 }
+
 void displayTime(ostream& os, TimePoint time)
 {
     time_t converted = chrono::system_clock::to_time_t(time);
 
     tm timeInfo{};
+
     localtime_s(&timeInfo, &converted);
 
     os << put_time(&timeInfo, "%d/%m/%Y %H:%M");
 }
+
 
 void Directory::display() const
 {
@@ -75,7 +83,7 @@ void Directory::display(ostream& os) const
             << setw(16) << fileList[i]->getName()
             << " | ";
          
-        if (os, fileList[i]->isDirectory()) {
+        if (fileList[i]->isDirectory()) {
             os << "<DIR>";
         }
         else {
@@ -100,6 +108,7 @@ void Directory::display(ostream& os) const
     os << dirCount << " Dir(s)\n";
 }
 void Directory::add(FileObject* file) {
+    updateModifiedTime();
 
     if (count == capacity) {
         resize();
@@ -124,7 +133,31 @@ void Directory::resize() {
 
 
 }
+void Directory::clear()
+{
+    for (size_t i = 0; i < count; i++)
+    {
+        delete fileList[i];
+        fileList[i] = nullptr;
+    }
+
+    count = 0;
+    updateModifiedTime();
+}
 
 bool Directory::isDirectory() const {
     return true;
+}
+
+FileObject* Directory::getFile(size_t index) const
+{
+    if (index >= count)
+        return nullptr;
+
+    return fileList[index];
+}
+
+size_t Directory::getCount() const
+{
+    return count;
 }

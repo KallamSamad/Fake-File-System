@@ -11,13 +11,17 @@ public:
     void display() const override;
     void display(ostream& os) const;
     size_t getSize() const override;
+    Directory(const string& name, TimePoint created, TimePoint modified);
     bool isDirectory() const override;
     void add(FileObject* file);
-    void resize();
+    FileObject* getFile(size_t index) const;
+    size_t getCount() const;
+    void clear();
 private:
     FileObject** fileList = nullptr;
     size_t capacity=0;
     size_t count=0;
+    void resize();
 };
 
 inline ostream& operator<<(ostream& os, const Directory& rhs)

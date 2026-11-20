@@ -11,8 +11,9 @@ using TimePoint = chrono::system_clock::time_point;
 class FileObject
 {
 public:
- 
- 	FileObject(const string& name);
+
+	FileObject(const string& name, TimePoint created, TimePoint modified);
+	FileObject(const string& name);
 	virtual ~FileObject()=default;
 	friend ostream& operator<<(ostream& os, const FileObject& rhs);
 	void virtual display() const = 0;
@@ -20,8 +21,12 @@ public:
 	virtual bool isDirectory() const = 0;
 	TimePoint getTimeCreated() const { return timeCreated; }
 	TimePoint getTimeModified() const { return timeModified; } 
-
 	string getName() const { return name; }
+
+protected:
+	void updateModifiedTime() {
+		timeModified = chrono::system_clock::now();
+	}
 private:
 	string name;
 	TimePoint timeCreated;

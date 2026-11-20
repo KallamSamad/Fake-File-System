@@ -10,6 +10,8 @@ public:
     size_t getSize() const override { return bytes; }
     void display() const override;
     bool isDirectory() const;
+    IndividualFile(size_t size, const string& name,TimePoint created, TimePoint modified);
+
 
 
 private:
